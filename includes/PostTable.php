@@ -56,4 +56,18 @@ class PostTable
 
 		$stmt->execute();
     }
+
+    public function select(): array
+    {
+        $sql = '
+            SELECT `post_id`, `username`, `email`, `image`
+              FROM `post`
+             ORDER
+                BY `post_id` ASC
+                 ;
+        ';
+		$stmt = $this->pdo->prepare($sql);
+		$stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
