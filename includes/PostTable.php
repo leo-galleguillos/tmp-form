@@ -73,7 +73,7 @@ class PostTable
 
     public function selectWherePostId(
         int $postId,
-    ) {
+    ):array {
         $sql = '
             SELECT `post_id`, `username`, `email`, `image`
               FROM `post`
