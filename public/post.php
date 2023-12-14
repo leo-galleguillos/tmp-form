@@ -45,5 +45,17 @@ if ($imagickImage->getImageHeight() > 300) {
 }
 $imagickImage->writeImage(__DIR__ . '/images/posts/' . $fileName);
 
+/*
+ * Send notification email.
+ *
+ * Sending emails is a complex process that involves various considerations to ensure reliable delivery and avoid common issues such as spam filtering. While PHP provides a basic mail() function, using it is NOT recommended for professional or large-scale applications. Use third-party services like Amazon SES (Simple Email Service) instead.
+ */
+
+$to       = $_POST['email'];
+$subject  = "Thank you for submitting the form.";
+$message  = "We will review your form submission shortly.";
+$headers  = "From: webmaster@example.com";
+//$result = mail($to, $subject, $message, $headers);
+
 header('Location: success.php', true, 303);
 exit();
