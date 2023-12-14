@@ -35,6 +35,5 @@ $postTable = new PostTable();
             <?php endforeach ?>
         </tbody>
     </table>
-
 </body>
 </html>
