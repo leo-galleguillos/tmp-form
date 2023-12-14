@@ -23,7 +23,7 @@ if (!$validator->isFormValid()) {
 
 require_once(__DIR__ . '/../includes/PostTable.php');
 $postTable    = new PostTable();
-$lastInsertId = $postTable->insert('1', '2');
+$lastInsertId = $postTable->insert($_POST['username'], $_POST['email']);
 
 $fileExtension = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
 $fileName      = $lastInsertId . '.' . strtolower($fileExtension);
