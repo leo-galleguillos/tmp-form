@@ -13,7 +13,7 @@ class PostTable
         $username = $dbConfig['username'];
         $password = $dbConfig['password'];
 
-		$this->pdo = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
+        $this->pdo = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
     }
 
     /**
@@ -29,12 +29,12 @@ class PostTable
             VALUES (:username, :email)
                  ;
         ';
-		$stmt = $this->pdo->prepare($sql);
+        $stmt = $this->pdo->prepare($sql);
 
-		$stmt->bindParam(':username', $username);
-		$stmt->bindParam(':email', $email);
+        $stmt->bindParam(':username', $username);
+        $stmt->bindParam(':email', $email);
 
-		$stmt->execute();
+        $stmt->execute();
 
         return $this->pdo->lastInsertId();
     }
@@ -49,12 +49,12 @@ class PostTable
              WHERE `post_id` = :postId
                  ;
         ';
-		$stmt = $this->pdo->prepare($sql);
+        $stmt = $this->pdo->prepare($sql);
 
-		$stmt->bindParam(':image', $image);
-		$stmt->bindParam(':postId', $postId);
+        $stmt->bindParam(':image', $image);
+        $stmt->bindParam(':postId', $postId);
 
-		$stmt->execute();
+        $stmt->execute();
     }
 
     public function select(): array
@@ -66,8 +66,8 @@ class PostTable
                 BY `post_id` ASC
                  ;
         ';
-		$stmt = $this->pdo->prepare($sql);
-		$stmt->execute();
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
