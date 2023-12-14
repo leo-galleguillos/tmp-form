@@ -6,7 +6,7 @@ class PostTable
 
     public function __construct()
     {
-        $config = require_once(__DIR__ . '/../includes/Config.php');
+        include(__DIR__ . '/../includes/Config.php');
         $dbConfig = $config['db'];
         $database = $dbConfig['database'];
         $hostname = $dbConfig['hostname'];
@@ -69,5 +69,22 @@ class PostTable
 		$stmt = $this->pdo->prepare($sql);
 		$stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function selectWherePostId(
+        int $postId,
+    ) {
+        $sql = '
+            SELECT `post_id`, `username`, `email`, `image`
+              FROM `post`
+             WHERE `post_id` = :postId
+                 ;
+        ';
+        $stmt = $this->pdo->prepare($sql);
+
+        $stmt->bindParam(':postId', $postId);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
