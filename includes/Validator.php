@@ -94,6 +94,13 @@ class Validator
             return false;
         }
 
+        if (
+            empty($_FILES['image']['tmp_name'])
+            || (false == getimagesize($_FILES['image']['tmp_name']))
+        ) {
+            return false;
+        }
+
         return true;
     }
 }
