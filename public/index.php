@@ -27,6 +27,17 @@ session_start();
         </p>
         <input type="submit" value="Submit">
     </form>
+
+    <?php if (
+        isset($_SESSION['flash']['errors'])
+        && is_array($_SESSION['flash']['errors'])
+    ): ?>
+        <ul class="errors">
+            <?php foreach ($_SESSION['flash']['errors'] as $error): ?>
+                <li><?= htmlspecialchars($error); ?></li>
+            <?php endforeach; ?>
+        </ul>
+    <?php endif ?>
 </body>
 </html>
 <?php
