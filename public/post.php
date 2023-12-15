@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 /*
  * Validate form.
@@ -9,7 +10,6 @@ $validator = new Validator();
 $validator->validateForm();
 
 if (!$validator->isFormValid()) {
-    session_start();
     $_SESSION['flash'] = [];
     $_SESSION['flash']['errors'] = $validator->getErrors();
 

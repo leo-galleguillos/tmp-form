@@ -1,5 +1,6 @@
 <?php
 session_start();
+$_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +26,7 @@ session_start();
             <label for="image">Image Upload</label><br>
             <input type="file" name="image" id="image" accept="image/*" required>
         </p>
+        <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
         <input type="submit" value="Submit">
     </form>
 
