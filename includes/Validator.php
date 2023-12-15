@@ -16,6 +16,16 @@ class Validator
             return;
         }
 
+        if (
+            empty($_SESSION['csrf_token'])
+            || empty($_POST['csrf_token'])
+            || ($_SESSION['csrf_token'] !== $_POST['csrf_token'])
+        ) {
+            $this->isFormValid = false;
+            $this->errors[]    = 'Unexpected error occurred.';
+            return;
+        }
+
         if (!$this->isUsernameValid()) {
             $this->isFormValid = false;
             $this->errors[]    = 'Invalid username.';
